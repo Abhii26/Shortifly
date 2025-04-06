@@ -1,0 +1,73 @@
+
+<%- include("layout/header") %>      
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Shorten Your Links, Amplify Your Reach</h2>
+    <p>Create short,  memorable URLs and track their performance with our powerful analytics.</p>
+        <form id="urlForm" class="url-form" action="/" method="post">
+          <div class="input-group">
+            <input type="url" id="originalUrl" name="url" placeholder="Paste your long URL here..." >
+            <button type="submit" class="btn-shorten">Shorten</button>
+          </div>
+        </form>
+        
+        <!-- <div id="resultContainer" class="result-container hidden">
+          <div class="result-box">
+            <p>Your shortened URL:</p>
+            <div class="result-url">
+              <a id="shortUrl" href="#" target="_blank"></a>
+              <button id="copyBtn" class="btn-copy">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+            <div class="analytics-link">
+              <a id="analyticsLink" href="#">View Analytics</a>
+            </div>
+          </div>
+        </div> -->
+      
+        <% if (shortUrl) { %>
+          <div class="result-box">
+            <p><strong>Your shortened URL:</strong></p>
+            <div class="result-url">
+              <a id="shortUrl" href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a>
+              <button id="copyBtn" class="btn-copy">
+                <i class="fas fa-copy"></i>
+              </button>
+              <% if (uid) { %>
+                <button class="btn btn-outline-info btn-sm" onclick="getClickCount('<%= uid %>')">
+                  Show Total Clicks
+                </button>
+              <% } %>
+            </div>
+            <p id="clickCount" class="mt-2 text-muted"></p>
+          </div>
+        <% } %>
+        
+      </div>
+      <%- include("layout/footer") %>
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  
+    async function getClickCount(uid) {
+      try {
+        const res = await fetch(`/analytics/${uid}`);
+        const data = await res.json();
+        document.getElementById('clickCount').textContent = `Total Clicks: ${data.totalClicks}`;
+      } catch (err) {
+        console.error(err);
+        document.getElementById('clickCount').textContent = 'Failed to fetch analytics.';
+      }
+    }
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  

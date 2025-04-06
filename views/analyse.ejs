@@ -1,0 +1,53 @@
+<%- include("layout/header") %>   
+<body >
+  <di v class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Shorten Your Links, Amplify Your Reach</h2>
+        <p>Create short,  memorable URLs and track their performance with our powerful analytics.</p>
+    <form action="/analyse" method="POST">
+      <div class="mb-3">
+        <label for="shortUrlInput" class="form-label">Enter your shortened URL:</label>
+        <input type="text" class="form-control" id="shortUrlInput" name="shortUrlInput" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Get Click Count</button>
+    </form>
+
+
+    <% if (error) { %>
+      <div class="alert alert-danger mt-4"><%= error %></div>
+    <% } %>
+    
+    <% if (totalClicks !== null) { %>
+      <div class="alert alert-success mt-4">
+        <strong>Total Clicks:</strong> <%= totalClicks %>
+      </div>
+    
+      <% if (clickTimes.length > 0) { %>
+        <h5>Click Timestamps:</h5>
+        <ul class="list-group">
+          <% clickTimes.forEach(function(time, index) { %>
+            <li class="list-group-item">
+              <strong><%= index + 1 %>.</strong> <%= new Date(time).toLocaleString() %>
+            </li>
+          <% }); %>
+        </ul>
+      <% } %>
+      
+    <% } %>
+    
+  </div>
+  <div class="hero-image">
+    <img src="https://illustrations.popsy.co/amber/digital-nomad.svg" alt="URL Shortener Illustration">
+  </div>
+</section>
+
+</main>
+<footer>
+<div class="container">
+  <p>&copy; 2023 Shortifly - URL Shortener Service</p>
+</div>
+</footer>
+
+</body>
+</html>  
