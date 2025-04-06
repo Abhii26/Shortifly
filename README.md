@@ -11,8 +11,17 @@
 
 ## 📸 Preview
 
+### 🏠 Home Page Demo  
 ![Shortifly Home Page Demo](assets/homepage.png)
-![Shortifly  Short Link Demo](assets/totallinks.png)
+
+---
+
+### 🔗 Short Link Creation Demo  
+![Shortifly Short Link Demo](assets/totallinks.png)
+
+---
+
+### 📊 Track Links Page Demo  
 ![Shortifly Track Links Page Demo](assets/tracklinks.png)
 
 ---
