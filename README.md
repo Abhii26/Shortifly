@@ -11,7 +11,9 @@
 
 ## 📸 Preview
 
-![App Screenshot](https://your-image-link.com/screenshot.png) <!-- Optional: add image or remove if unavailable -->
+![Shortifly Home Page Demo](assets/homepage.png)
+![Shortifly  Short Link Demo](assets/totallinks.png)
+![Shortifly Track Links Page Demo](assets/tracklinks.png)
 
 ---
 
@@ -38,8 +40,26 @@
 
 ## 📁 Project Structure
 
-Shortifly/ ├── controller/ │ └── control.js ├── models/ │ └── schema.js ├── public/ │ └── styles.css ├── routes/ │ └── route.js ├── views/ │ ├── index.ejs │ └── analyse.ejs ├── .env ├── app.js ├── package.json └── README.md
-
+Shortifly/
+├── assets/              # Folder for images
+│   ├── homepage.png    # Screenshot of the homepage
+│   ├── totallinks.png  # Screenshot of the analytics page
+│   ├── tracklinks.png   # Screenshot showing link shorten
+├── controller/
+│   └── control.js
+├── models/
+│   └── schema.js
+├── public/
+│   └── styles.css
+├── routes/
+│   └── route.js
+├── views/
+│   ├── index.ejs
+│   └── analyse.ejs
+├── .env
+├── app.js
+├── package.json
+└── README.md
 ---
 
 ## 🧑‍💻 Getting Started
@@ -100,12 +120,3 @@ Abhishek Tiwari
 
 “Shorten smarter. Track better. Share faster.”
 
-
----
-
-Let me know if you'd like me to:
-- Add a dark mode preview badge
-- Include a GIF demo
-- Auto-generate a logo or icon
-
-Want me to create this file directly and show you the `.md` in your project structure?
