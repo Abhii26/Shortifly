@@ -40,7 +40,33 @@
 
 ## 📁 Project Structure
 
-<pre lang="markdown"> ``` Shortifly/ ├── assets/ # Folder for images │ ├── homepage.png # Screenshot of the homepage │ ├── totallinks.png # Screenshot showing total links or clicks │ ├── tracklinks.png # Screenshot of the analytics/tracking page ├── controller/ │ └── control.js ├── models/ │ └── schema.js ├── public/ │ └── styles.css ├── routes/ │ └── route.js ├── views/ │ ├── index.ejs │ └── analyse.ejs ├── .env ├── app.js ├── package.json └── README.md ``` </pre>
+<pre>
+
+Shortifly/
+├── assets/                 # Media assets (images for documentation/screenshots)
+│   ├── homepage.png        # Screenshot of the homepage
+│   ├── totallinks.png      # Screenshot showing total links or clicks
+│   └── tracklinks.png      # Screenshot of the analytics/tracking page
+├── controller/             # Logic for handling application control flow
+│   └── control.js          # Core controller logic
+├── models/                 # Mongoose schemas and database models
+│   └── schema.js           # URL schema definition
+├── public/                 # Static assets (CSS, JS, etc.)
+│   └── styles.css          # Main stylesheet
+├── routes/                 # Route definitions for the application
+│   └── route.js            # All route handlers
+├── views/                  # EJS templates for rendering frontend pages
+│   ├── layout/             # Layout partials for EJS views
+│   │   ├── header.ejs      # Header partial
+│   │   └── footer.ejs      # Footer partial
+│   ├── index.ejs           # Home page view
+│   └── analyse.ejs         # Analytics page view
+├── .env                    # Environment variables file
+├── app.js                  # Main server file (Express setup)
+├── package.json            # Project metadata and dependencies
+└── README.md               # Project documentation
+</pre>
+
 
 ---
 
