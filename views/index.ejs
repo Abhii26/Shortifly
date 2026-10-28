@@ -1,73 +1,10 @@
-
-<%- include("layout/header") %>      
-
-<section class="hero">
-  <div class="hero-content">
-    <h2>Shorten Your Links, Amplify Your Reach</h2>
-    <p>Create short,  memorable URLs and track their performance with our powerful analytics.</p>
-        <form id="urlForm" class="url-form" action="/" method="post">
-          <div class="input-group">
-            <input type="url" id="originalUrl" name="url" placeholder="Paste your long URL here..." >
-            <button type="submit" class="btn-shorten">Shorten</button>
-          </div>
-        </form>
-        
-        <!-- <div id="resultContainer" class="result-container hidden">
-          <div class="result-box">
-            <p>Your shortened URL:</p>
-            <div class="result-url">
-              <a id="shortUrl" href="#" target="_blank"></a>
-              <button id="copyBtn" class="btn-copy">
-                <i class="fas fa-copy"></i>
-              </button>
-            </div>
-            <div class="analytics-link">
-              <a id="analyticsLink" href="#">View Analytics</a>
-            </div>
-          </div>
-        </div> -->
-      
-        <% if (shortUrl) { %>
-          <div class="result-box">
-            <p><strong>Your shortened URL:</strong></p>
-            <div class="result-url">
-              <a id="shortUrl" href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a>
-              <button id="copyBtn" class="btn-copy">
-                <i class="fas fa-copy"></i>
-              </button>
-              <% if (uid) { %>
-                <button class="btn btn-outline-info btn-sm" onclick="getClickCount('<%= uid %>')">
-                  Show Total Clicks
-                </button>
-              <% } %>
-            </div>
-            <p id="clickCount" class="mt-2 text-muted"></p>
-          </div>
-        <% } %>
-        
-      </div>
-      <%- include("layout/footer") %>
-  <script>
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
-      });
-    }
-  
-    async function getClickCount(uid) {
-      try {
-        const res = await fetch(`/analytics/${uid}`);
-        const data = await res.json();
-        document.getElementById('clickCount').textContent = `Total Clicks: ${data.totalClicks}`;
-      } catch (err) {
-        console.error(err);
-        document.getElementById('clickCount').textContent = 'Failed to fetch analytics.';
-      }
-    }
-  </script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  
+<% const pageTitle = 'Shortifly | Make every link count'; const pageName='home'; %>
+<%- include('layout/header') %>
+<section class="hero hero-home"><div class="eyebrow rise"><span class="live-dot"></span> THE NEXT GENERATION LINK TOOL <span class="eyebrow-arrow">↗</span></div><h1 class="rise delay-one">Big things start<br>with <span class="gradient-text">short links.</span></h1><p class="hero-copy rise delay-two">Transform long, messy URLs into clean, powerful links. Share smarter, track every click, and make an impact.</p><div class="hero-actions rise delay-three"><a class="button button-primary" href="#shorten">Start shortening <span>↗</span></a><a class="button button-ghost" href="/analyse">Explore analytics <span>→</span></a></div><div class="hero-visual" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="floating-chip float-one"><span class="chip-icon">↗</span><span>Link created <strong>Successfully</strong></span><span class="check">✓</span></div><div class="floating-chip float-two"><span class="chip-icon purple">◉</span><span>Click insights <strong>Real-time tracking</strong></span><span class="bars"><i></i><i></i><i></i></span></div><div class="floating-center">s<span>↗</span></div></div></section>
+<section id="shorten" class="workspace"><div class="workspace-top"><div><div class="section-label"><span class="star">✦</span> YOUR LINK WORKSPACE</div><h2>Make it <span class="gradient-text">short & sweet.</span></h2><p>Paste a destination. We'll handle the rest.</p></div><div class="workspace-decoration" aria-hidden="true">↗</div></div><div class="workspace-body"><form method="post" action="/" class="shorten-form" id="shorten-form"><label for="originalUrl">YOUR LONG URL</label><div class="input-frame"><span class="input-icon">⌁</span><input id="originalUrl" type="url" name="url" placeholder="https://example.com/your-really-long-link" required autocomplete="url" value="<%= typeof originalUrl !== 'undefined' ? originalUrl : '' %>"><button class="button button-primary" type="submit">Shorten URL <span>↗</span></button></div><p class="input-hint">✧ Free to use <span>·</span> No signup required <span>·</span> Click analytics included</p></form>
+<% if (shortend && shortend.type==='danger') { %><div class="notice notice-error" role="alert"><%= shortend.message %></div><% } %>
+<% if (shortUrl) { %><div class="result-panel" id="result-panel"><div class="result-heading"><span class="success-mark">✓</span><div><h3>Your link is ready!</h3><p>It's live and ready to share with the world.</p></div><span class="result-pill">ACTIVE</span></div><div class="result-address"><a id="shortUrl" href="<%= shortUrl %>" rel="noopener noreferrer" target="_blank"><%= shortUrl %></a><button id="copyBtn" type="button" data-copy-url="<%= shortUrl %>" class="button copy-button">Copy link <span>⧉</span></button></div><div class="result-actions"><a href="/analyse?url=<%= encodeURIComponent(shortUrl) %>">View link insights →</a><button type="button" data-click-count="<%= uid %>">Check clicks ↗</button><span id="clickCount" aria-live="polite"></span></div></div><% } %>
+</div></section>
+<section class="section-features"><div class="centered"><div class="section-label">✦ BUILT FOR THE WAY YOU SHARE</div><h2>Everything you need.<br><span class="gradient-text">Nothing you don't.</span></h2><p>Powerful features. Effortlessly simple.</p></div><div class="feature-grid"><article class="feature-card"><div class="feature-icon purple-icon">↗</div><h3>Instant short links</h3><p>Turn long URLs into memorable, shareable links in a blink. No unnecessary steps.</p><div class="feature-meta">FAST & EFFORTLESS <span>↗</span></div></article><article class="feature-card"><div class="feature-icon aqua-icon">▥</div><h3>Meaningful analytics</h3><p>Go beyond the link. See how many people clicked and exactly when they visited.</p><div class="feature-meta">REAL INSIGHTS <span>↗</span></div></article><article class="feature-card"><div class="feature-icon orange-icon">◇</div><h3>Made for everyone</h3><p>No account, no complex dashboard. Just copy, share, and let your links do their thing.</p><div class="feature-meta">ZERO FRICTION <span>↗</span></div></article></div></section>
+<section class="end-banner"><div class="section-label">✦ READY WHEN YOU ARE</div><h2>Every great idea<br><span>deserves a better link.</span></h2><a href="#shorten" class="button button-light">Create your first link <span>↗</span></a><div class="banner-glow"></div></section>
+<%- include('layout/footer') %>

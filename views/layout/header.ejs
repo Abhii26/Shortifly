@@ -1,35 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URL Shortener</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
- 
-
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1><a href="/">Shortifly</a></h1>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/analyse" >Track Your Links Easily</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main class="container">
-    <% if (shortend) { %>
-      <div class=" mt-4 alert alert-<%= shortend.type %> alert-dismissible fade show" role="alert">
-          <%= shortend.message %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-  <% } %>
-  
-  
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080d1a"><meta name="description" content="Shortifly — shorten, share and track links with beautiful live analytics."><title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Shortifly | Short links, big impact' %></title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script></head>
+<body><div class="noise" aria-hidden="true"></div><div class="ambient ambient-a" aria-hidden="true"></div><div class="ambient ambient-b" aria-hidden="true"></div>
+<header class="nav-shell"><nav class="nav container" aria-label="Main navigation"><a href="/" class="brand" aria-label="Shortifly home"><span class="brand-symbol">↗</span>Shorti<span>fly</span><span class="brand-period">.</span></a><div class="nav-links"><a href="/" class="<%= typeof pageName !== 'undefined' && pageName === 'home' ? 'active' : '' %>">Home</a><a href="/analyse" class="<%= typeof pageName !== 'undefined' && pageName === 'analytics' ? 'active' : '' %>">Analytics</a></div><a href="/#shorten" class="nav-cta">Create a link <span>↗</span></a></nav></header>
+<main class="container main-content">

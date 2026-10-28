@@ -1,53 +1,5 @@
-<%- include("layout/header") %>   
-<body >
-  <di v class="container">
-    <section class="hero">
-      <div class="hero-content">
-        <h2>Shorten Your Links, Amplify Your Reach</h2>
-        <p>Create short,  memorable URLs and track their performance with our powerful analytics.</p>
-    <form action="/analyse" method="POST">
-      <div class="mb-3">
-        <label for="shortUrlInput" class="form-label">Enter your shortened URL:</label>
-        <input type="text" class="form-control" id="shortUrlInput" name="shortUrlInput" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Get Click Count</button>
-    </form>
-
-
-    <% if (error) { %>
-      <div class="alert alert-danger mt-4"><%= error %></div>
-    <% } %>
-    
-    <% if (totalClicks !== null) { %>
-      <div class="alert alert-success mt-4">
-        <strong>Total Clicks:</strong> <%= totalClicks %>
-      </div>
-    
-      <% if (clickTimes.length > 0) { %>
-        <h5>Click Timestamps:</h5>
-        <ul class="list-group">
-          <% clickTimes.forEach(function(time, index) { %>
-            <li class="list-group-item">
-              <strong><%= index + 1 %>.</strong> <%= new Date(time).toLocaleString() %>
-            </li>
-          <% }); %>
-        </ul>
-      <% } %>
-      
-    <% } %>
-    
-  </div>
-  <div class="hero-image">
-    <img src="https://illustrations.popsy.co/amber/digital-nomad.svg" alt="URL Shortener Illustration">
-  </div>
-</section>
-
-</main>
-<footer>
-<div class="container">
-  <p>&copy; 2023 Shortifly - URL Shortener Service</p>
-</div>
-</footer>
-
-</body>
-</html>  
+<% const pageTitle = 'Shortifly | Link Analytics'; const pageName='analytics'; %><%- include('layout/header') %>
+<section class="analytics-hero"><div class="eyebrow rise"><span class="live-dot"></span> UNDERSTAND EVERY CLICK <span class="eyebrow-arrow">↗</span></div><h1 class="rise delay-one">Your links. <span class="gradient-text">Your impact.</span></h1><p class="hero-copy rise delay-two">Every click tells a story. Get the insights behind your links, all in one beautiful place.</p></section>
+<section class="analytics-workspace workspace"><div class="workspace-top"><div><div class="section-label">✦ LINK INTELLIGENCE</div><h2>Track your <span class="gradient-text">performance.</span></h2><p>Enter any Shortifly link to see its engagement.</p></div><div class="workspace-decoration" aria-hidden="true">▥</div></div><div class="workspace-body"><form method="post" action="/analyse" id="analyse-form" class="shorten-form"><label for="shortUrlInput">YOUR SHORT LINK</label><div class="input-frame"><span class="input-icon">⌁</span><input type="text" id="shortUrlInput" name="shortUrlInput" placeholder="https://shortifly-demo.netlify.app/abc123" required value="<%= typeof submittedUrl !== 'undefined' ? submittedUrl : '' %>"><button type="submit" class="button button-primary">Analyze link <span>↗</span></button></div><p class="input-hint">✧ Paste your full Shortifly link or just its short code</p></form><% if (error) { %><div class="notice notice-error" role="alert"><%= error %></div><% } %></div></section>
+<% if (totalClicks !== null) { %><section class="analytics-results"><div class="results-title"><div><div class="section-label">✦ LIVE LINK ANALYTICS</div><h2>Performance <span class="gradient-text">overview.</span></h2></div><span class="result-pill">TRACKED</span></div><div class="stats-grid"><article class="stat-card"><div class="stat-top">TOTAL CLICKS <span class="stat-icon">↗</span></div><div class="stat-number" data-count="<%= totalClicks %>"><%= totalClicks %></div><p>All-time link visits</p><div class="stat-progress"><span></span></div></article><article class="stat-card"><div class="stat-top">LAST ACTIVITY <span class="stat-icon">◷</span></div><div class="stat-time"><% if (clickTimes.length) { %><time class="local-datetime" datetime="<%= new Date(clickTimes[clickTimes.length-1]).toISOString() %>"><%= new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:true}).format(new Date(clickTimes[clickTimes.length-1])) %> IST</time><% } else { %>No clicks yet<% } %></div><p>Most recent recorded visit</p><div class="stat-progress teal"><span></span></div></article></div><article class="activity-card"><div class="activity-heading"><div><h3>Click activity</h3><p>A timeline of every recorded visit</p></div><span class="activity-count"><%= totalClicks %> events</span></div><% if (clickTimes.length) { %><div class="activity-list"><% clickTimes.slice().reverse().forEach((time,idx)=>{ const parsed = new Date(time); if (!Number.isNaN(parsed.getTime())) { %><div class="activity-row"><div class="activity-point"></div><div class="activity-description"><strong>Link opened</strong><span>Visit #<%= clickTimes.length - idx %></span></div><time datetime="<%= parsed.toISOString() %>" class="click-timestamp local-datetime"><%= new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'medium'}).format(parsed) %> IST</time></div><% } }); %></div><% } else { %><div class="empty-state"><div class="empty-icon">◷</div><h4>No visits just yet</h4><p>Share your short link to start collecting click insights.</p></div><% } %></article><p class="timezone-note">◷ Times are shown in your browser's local timezone. Server fallback: India Standard Time (IST).</p></section><% } else { %><section class="analytics-placeholder"><div class="placeholder-orbit" aria-hidden="true">▥</div><h3>Insights are one link away.</h3><p>Paste a shortened link above to unlock its click activity and engagement timeline.</p></section><% } %>
+<%- include('layout/footer') %>

@@ -1,2 +1,22 @@
+# Dependencies and generated deploy artifacts
 node_modules/
+.netlify/
+.vercel/
+dist/
+coverage/
+
+# Credentials: keep .env.example in Git; never commit a real .env
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local logs / editor / OS
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
